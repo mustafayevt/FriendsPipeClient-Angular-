@@ -20,6 +20,8 @@ export class NavbarComponent implements OnInit {
         if (success) {
           this.router.navigate(['/LoginRegister']);
         }
+      }, error => {
+        this.router.navigate(['/LoginRegister']);
       });
   }
 }

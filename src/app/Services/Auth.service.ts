@@ -15,7 +15,7 @@ export class AuthService {
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   private loggedUser: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   login(user: User): Observable<boolean> {
     return this.http.post<RefreshAccessToken>(`${this.baseUrl}auth/signin`, user)
