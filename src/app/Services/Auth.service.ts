@@ -13,9 +13,9 @@ export class AuthService {
   baseUrl = environment.baseUrl;
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
-  private loggedUser: string;
+  public loggedUser: string;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { this.loggedUser = this.getUserName();}
 
   login(user: User): Observable<boolean> {
     return this.http.post<RefreshAccessToken>(`${this.baseUrl}auth/signin`, user)
@@ -62,10 +62,13 @@ export class AuthService {
   getJwtToken() {
     return localStorage.getItem(this.JWT_TOKEN);
   }
+  getUserName() {
+    return localStorage.getItem('UserName');
+  }
 
   private doLoginUser(username: string, tokens: RefreshAccessToken) {
-    console.log(tokens);
     this.loggedUser = username;
+    this.storeUserName(username);
     this.storeTokens(tokens);
   }
 
@@ -82,6 +85,10 @@ export class AuthService {
     localStorage.setItem(this.JWT_TOKEN, jwt);
   }
 
+  private storeUserName(userName: string) {
+    localStorage.setItem('UserName', userName);
+  }
+
   private storeTokens(tokens: RefreshAccessToken) {
     localStorage.setItem(this.JWT_TOKEN, tokens.accessToken);
     localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
@@ -90,5 +97,6 @@ export class AuthService {
   private removeTokens() {
     localStorage.removeItem(this.JWT_TOKEN);
     localStorage.removeItem(this.REFRESH_TOKEN);
+    localStorage.removeItem('UserName');
   }
 }

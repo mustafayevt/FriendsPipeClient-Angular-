@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../Services/post.service';
+import { Post } from '../DTOs/Post';
 
 @Component({
   selector: 'app-posts',
@@ -8,24 +9,18 @@ import { PostService } from '../Services/post.service';
 })
 export class PostsComponent implements OnInit {
 
-  public Posts = [
-    { 'id': 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" },
-    { "id": 3, "name": "Tural" }
-  ]
-  constructor() { 
-    
+  public Posts: Post[];
+  public NewPost: string;
+  constructor(private _postService: PostService) {
+    _postService.getposts().subscribe(data => this.Posts = data);
   }
 
   ngOnInit() {
   }
 
+  addPost() {
+    this._postService.addPost(this.NewPost).subscribe(data => alert(data), error => {
+      alert('Something went Wrong');
+    })
+  }
 }

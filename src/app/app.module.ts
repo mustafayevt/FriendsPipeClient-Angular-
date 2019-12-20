@@ -18,6 +18,7 @@ import { PostService } from './Services/post.service';
 import { HomeGuard } from './auth/guards/home.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { PostDetailComponent } from './post-detail/post-detail.component';
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'home', component: HomePageComponent, canActivate: [HomeGuard] },
+  { path: 'post/detail/:id', component: PostDetailComponent, canActivate: [HomeGuard] },
   { path: '*', component: HomePageComponent, canActivate: [HomeGuard] },
   { path: '**', component: HomePageComponent, canActivate: [HomeGuard] }
 ];
@@ -42,7 +44,8 @@ const routes: Routes = [
     LoginRegisterComponent,
     FooterComponent,
     PostsComponent,
-    PeopleSideBarComponent
+    PeopleSideBarComponent,
+    PostDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ const routes: Routes = [
   ],
   providers: [AuthService, PostService, AuthGuard,
     AuthService,
+    TokenInterceptor,
     HomeGuard,
     {
       provide: HTTP_INTERCEPTORS,
