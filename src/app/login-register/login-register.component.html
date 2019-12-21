@@ -3,13 +3,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Something is Wrong!</h5>
+          <h5 class="modal-title">Something Went Wrong!</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <p>Wrong Userename or Password</p>
+          <p>{{this.ErrorMessage}}</p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -40,21 +40,21 @@
                     <form ngForm class="row register-form"  (ngSubmit)="signup()">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username" name="UsernameReg" required [(ngModel)]="UserRegister.Username" />
+                                <input type="text" class="form-control" placeholder="Username" name="UsernameReg" required [(ngModel)]="UserRegister.username" />
                             </div>
                             <div class="form-group">
-                                <input type="email" class="form-control" placeholder="Email" name="EmailReg" required [(ngModel)]="UserRegister.Email"  />
+                                <input type="email" class="form-control" placeholder="Email" name="EmailReg" required [(ngModel)]="UserRegister.email"  />
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password" name="PasswordReg" required [(ngModel)]="UserRegister.Password" />
+                                <input type="password" class="form-control" placeholder="Password" name="PasswordReg" required [(ngModel)]="UserRegister.password" />
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Name" name="NameReg" required [(ngModel)]="UserRegister.Name" />
+                                <input type="text" class="form-control" placeholder="Name" name="NameReg" required [(ngModel)]="UserRegister.name" />
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Surname" name="SurnameReg" required [(ngModel)]="UserRegister.Surname" />
+                                <input type="text" class="form-control" placeholder="Surname" name="SurnameReg" required [(ngModel)]="UserRegister.surname" />
                             </div>
                         </div>
                         <input type="submit" class="btnRegister"  value="Register"/>
@@ -65,10 +65,10 @@
                     <form ngForm class="row register-form" (ngSubmit)="login()">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username" name="Username" required [(ngModel)]="UserSignIn.Username"/>
+                                <input type="text" class="form-control" placeholder="Username" name="Username" required [(ngModel)]="UserSignIn.username"/>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password" name="Password" required [(ngModel)]="UserSignIn.Password" />
+                                <input type="password" class="form-control" placeholder="Password" name="Password" required [(ngModel)]="UserSignIn.password" />
                             </div>
                             <input type="submit" class="btnRegister" value="Login"/>
                         </div>

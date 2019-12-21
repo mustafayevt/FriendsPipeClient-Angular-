@@ -21,11 +21,11 @@ export class PostService {
     return this._httpClient.get<Post>(`${this.baseUrl}post/postdetail?PostId=${PostId}`);
   }
 
-  addComment(PostId: number, Comment: string): Observable<number> {
-    return this._httpClient.post<number>(`${this.baseUrl}post/addcomment?PostId=${PostId}&Comment=${Comment}`, null);
+  addComment(PostId: number, Comment: string): Observable<Comment> {
+    return this._httpClient.post<Comment>(`${this.baseUrl}post/addcomment?PostId=${PostId}&Comment=${Comment}`, null);
   }
 
-  addPost(NewPost: string): Observable<number> {
-    return this._httpClient.post<number>(`${this.baseUrl}post/addpost?newPost=${NewPost}`, null);
+  addPost(NewPost: string): Observable<Post> {
+    return this._httpClient.post<Post>(`${this.baseUrl}post/addpost?newPost=${NewPost}`, null);
   }
 }

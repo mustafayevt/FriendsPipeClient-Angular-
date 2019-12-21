@@ -12,6 +12,7 @@ export class LoginRegisterComponent implements OnInit {
 
   UserSignIn: User = new User();
   UserRegister: User = new User();
+  ErrorMessage: string;
   constructor(private authService: AuthService, private router: Router) {
   }
 
@@ -21,8 +22,9 @@ export class LoginRegisterComponent implements OnInit {
     this.authService.login(this.UserSignIn).subscribe(next => {
       this.router.navigate(['/home']);
     }, error => {
-      $('#SomethingIsWrongModal').modal('toggle');
-      console.log('Error');
+      this.ErrorMessage = error.error;
+      console.log(this.ErrorMessage);
+      $('#SomethingIsWrongModal').modal('show');
     });
   }
 
@@ -31,7 +33,9 @@ export class LoginRegisterComponent implements OnInit {
       this.router.navigate(['/home']);
       console.log('successful');
     }, error => {
-      console.log('Error');
+      this.ErrorMessage = error.error;
+      console.log(error.error);
+      $('#SomethingIsWrongModal').modal('show');
     });
   }
   refreshtoken() {

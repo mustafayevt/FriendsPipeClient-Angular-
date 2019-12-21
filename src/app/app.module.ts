@@ -19,6 +19,7 @@ import { HomeGuard } from './auth/guards/home.guard';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { PostDetailComponent } from './post-detail/post-detail.component';
+import { FindFriendsComponent } from './find-friends/find-friends.component';
 
 
 
@@ -45,7 +46,8 @@ const routes: Routes = [
     FooterComponent,
     PostsComponent,
     PeopleSideBarComponent,
-    PostDetailComponent
+    PostDetailComponent,
+    FindFriendsComponent
   ],
   imports: [
     BrowserModule,

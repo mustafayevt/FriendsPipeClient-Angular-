@@ -8,9 +8,9 @@
         <footer class="blockquote-footer">{{this.post.postedDate}}
         </footer>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Add Comment:" aria-label="Add Comment" aria-describedby="basic-addon2">
+            <input type="text" class="form-control" placeholder="Add Comment:" [(ngModel)]="newComment" aria-label="Add Comment" aria-describedby="basic-addon2">
             <div class="input-group-append">
-              <button class="btn btn-dark" type="button">Add</button>
+              <button class="btn btn-dark" type="button" (click)="addComment()">Post</button>
             </div>
           </div>
     </div>

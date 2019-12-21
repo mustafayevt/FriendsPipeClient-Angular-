@@ -20,18 +20,14 @@ export class AuthService {
   login(user: User): Observable<boolean> {
     return this.http.post<RefreshAccessToken>(`${this.baseUrl}auth/signin`, user)
       .pipe(
-        tap(tokens => this.doLoginUser(user.Username, tokens)),
+        tap(tokens => this.doLoginUser(user.username, tokens)),
         mapTo(true));
   }
   signup(user: User): Observable<boolean> {
     return this.http.post<RefreshAccessToken>(`${this.baseUrl}auth/signup`, user)
       .pipe(
-        tap(tokens => this.doLoginUser(user.Username, tokens)),
-        mapTo(true),
-        catchError(error => {
-          console.log(error.error);
-          return of(false);
-        }));
+        tap(tokens => this.doLoginUser(user.username, tokens)),
+        mapTo(true));
   }
 
   logout() {

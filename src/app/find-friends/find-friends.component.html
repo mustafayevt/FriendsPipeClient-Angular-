@@ -1,0 +1,17 @@
+<div class="row bg-light">
+    <div class="col">
+      <div class="user-widget-2">
+        <ul class="list-unstyled">
+          <li class="media" *ngFor="let user of randomUsers">
+            <img class="rounded-circle d-flex align-self-center" src="https://bootdey.com/img/Content/avatar/avatar1.png"
+              alt="">
+            <div class="media-body">
+              <h5>{{user.username}}</h5>
+              <p>{{user.name}} {{user.surname}}</p>
+            </div>
+            <button class="btn btn-dark">Follow</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>

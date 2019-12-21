@@ -24,7 +24,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/notiflix-angular/dist/notiflix-angular-1.1.0.css"
             ],
             "scripts": []
           },
