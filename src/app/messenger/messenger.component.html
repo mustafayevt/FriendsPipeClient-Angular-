@@ -46,7 +46,7 @@
                         <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil">
                         </div>
                         <div class="chat_ib">
-                            <h5>{{user.userName}}</h5>
+                            <h5>{{user.userName}} <i [style.visibility]="this.user.unreadedMessages!==0 ? 'visible' : 'hidden'" style="font-weight: bold; color:green">{{user.unreadedMessages}}</i></h5>
                         </div>
                     </div>
                 </div>
@@ -55,11 +55,10 @@
         </div>
 
         <div class="mesgs" *ngIf="selectedUser">
-            <div class="msg_history" *ngFor="let message of selectedUser.messages">
-
-                <div ngClass="message.isIncoming ? 'incoming_msg' : 'outgoing_msg'">
-                    <div ngClass="message.isIncoming? 'received_msg' : 'sent_msg'">
-                        <div ngClass="message.isIncoming? 'received_withd_msg' : ''">
+            <div class="msg_history">
+                <div [ngClass]="message.isIncoming ? 'incoming_msg' : 'outgoing_msg'"  *ngFor="let message of selectedUser.messages">
+                    <div [ngClass]="message.isIncoming? 'received_msg' : 'sent_msg'">
+                        <div [ngClass]="message.isIncoming? 'received_withd_msg' : ''">
                             <p>{{message.message}}</p>
                             <span class="time_date"> 11:01 AM | June 9</span>
                         </div>

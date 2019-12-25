@@ -28,6 +28,7 @@ export class MessengerComponent implements OnInit {
     console.log(chat);
     console.log(this.selectedUser);
     this.selectedUser = chat;
+    this.selectedUser.unreadedMessages = 0;
   }
 
   getUsers() {
@@ -47,7 +48,12 @@ export class MessengerComponent implements OnInit {
   getNewMessage() {
     this.connection.on('NewMessage', (newMessage: MessageDto) => {
       this.connectedUsers[this.connectedUsers.findIndex(e => e.connectionId === newMessage.senderId)].messages.push(newMessage);
-      console.log(this.connectedUsers[this.connectedUsers.findIndex(e => e.connectionId === newMessage.senderId)]);
+      
+      console.log(newMessage.senderId);
+      if (this.selectedUser == undefined || newMessage.senderId != this.selectedUser.connectionId) {
+
+        this.connectedUsers[this.connectedUsers.findIndex(e => e.connectionId === newMessage.senderId)].unreadedMessages++;
+      }
     });
   }
 
