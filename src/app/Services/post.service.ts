@@ -10,7 +10,7 @@ import { Post } from '../DTOs/Post';
   providedIn: 'root'
 })
 export class PostService {
-  baseUrl = environment.baseUrl;
+  baseUrl = environment.baseUrl+'api/';
 
   constructor(private _httpClient: HttpClient) {
   }

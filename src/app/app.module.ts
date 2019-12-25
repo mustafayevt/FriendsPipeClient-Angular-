@@ -20,6 +20,8 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { PostDetailComponent } from './post-detail/post-detail.component';
 import { FindFriendsComponent } from './find-friends/find-friends.component';
+import { MessengerComponent } from './messenger/messenger.component';
+import { ChatComponent } from './chat/chat.component';
 
 
 
@@ -31,6 +33,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: 'home', component: HomePageComponent, canActivate: [HomeGuard] },
+  { path: 'messenger', component: MessengerComponent, canActivate: [HomeGuard] },
   { path: 'post/detail/:id', component: PostDetailComponent, canActivate: [HomeGuard] },
   { path: '*', component: HomePageComponent, canActivate: [HomeGuard] },
   { path: '**', component: HomePageComponent, canActivate: [HomeGuard] }
@@ -47,7 +50,9 @@ const routes: Routes = [
     PostsComponent,
     PeopleSideBarComponent,
     PostDetailComponent,
-    FindFriendsComponent
+    FindFriendsComponent,
+    MessengerComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

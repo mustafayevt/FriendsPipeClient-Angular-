@@ -10,12 +10,12 @@ import { RefreshAccessToken } from '../DTOs/RefreshAccessToken';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = environment.baseUrl;
+  baseUrl = environment.baseUrl + 'api/';
   private readonly JWT_TOKEN = 'JWT_TOKEN';
   private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
   public loggedUser: string;
 
-  constructor(private http: HttpClient) { this.loggedUser = this.getUserName();}
+  constructor(private http: HttpClient) { this.loggedUser = this.getUserName(); }
 
   login(user: User): Observable<boolean> {
     return this.http.post<RefreshAccessToken>(`${this.baseUrl}auth/signin`, user)

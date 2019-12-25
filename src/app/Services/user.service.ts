@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  baseUrl = environment.baseUrl;
+  baseUrl = environment.baseUrl + 'api/';
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -18,6 +18,9 @@ export class UserService {
 
   getNotFollowedUsers(): Observable<User[]> {
     return this._httpClient.get<User[]>(`${this.baseUrl}userfollow/getrandomuser`);
+  }
+  getFollowingUsers(): Observable<User[]> {
+    return this._httpClient.get<User[]>(`${this.baseUrl}userfollow/getfollowings`);
   }
 
   addFollow(followUserName: string): Observable<number> {
