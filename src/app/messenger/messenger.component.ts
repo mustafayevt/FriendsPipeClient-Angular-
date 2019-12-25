@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { HubConnection, HubConnectionBuilder } from '@aspnet/signalr';
 import { environment } from 'src/environments/environment';
 import { MessengerService } from '../Services/Messenger.service';
@@ -25,8 +25,6 @@ export class MessengerComponent implements OnInit {
   text: string;
 
   selectChat(chat: MessengerUser) {
-    console.log(chat);
-    console.log(this.selectedUser);
     this.selectedUser = chat;
     this.selectedUser.unreadedMessages = 0;
   }
@@ -34,7 +32,6 @@ export class MessengerComponent implements OnInit {
   getUsers() {
     this.connection.on('GetUsers', (Users: Array<MessengerUser>) => {
       this.connectedUsers = Users;
-      console.log(this.connectedUsers);
     });
   }
   getNewUser() {
@@ -48,8 +45,6 @@ export class MessengerComponent implements OnInit {
   getNewMessage() {
     this.connection.on('NewMessage', (newMessage: MessageDto) => {
       this.connectedUsers[this.connectedUsers.findIndex(e => e.connectionId === newMessage.senderId)].messages.push(newMessage);
-      
-      console.log(newMessage.senderId);
       if (this.selectedUser == undefined || newMessage.senderId != this.selectedUser.connectionId) {
 
         this.connectedUsers[this.connectedUsers.findIndex(e => e.connectionId === newMessage.senderId)].unreadedMessages++;
@@ -59,9 +54,12 @@ export class MessengerComponent implements OnInit {
 
   userDisconnected() {
     this.connection.on('UserDisconnected', (disconnectedUser: MessengerUser) => {
-      console.log(this.connectedUsers);
       this.connectedUsers = this.connectedUsers.filter(item => item.userName !== disconnectedUser.userName);
     });
+  }
+
+  ngOnDestroy() {
+    this.connection.stop();
   }
 
   constructor(private _authService: AuthService) {
@@ -78,7 +76,7 @@ export class MessengerComponent implements OnInit {
       this.userDisconnected();
       this.getNewMessage();
     });
-
+    console.log('asdfsdfsdfsdfsdf');
   }
   sendMessage() {
     this.selectedUser.messages.push(new MessageDto(this.newMessage.message, this.newMessage.isIncoming));

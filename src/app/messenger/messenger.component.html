@@ -68,7 +68,7 @@
             </div>
             <div class="type_msg">
                 <div class="input_msg_write">
-                    <input type="text" name="message" id="message" [(ngModel)]="this.newMessage.message" class="write_msg" placeholder="Type a message" />
+                    <input type="text" name="message" id="message" [(ngModel)]="this.newMessage.message" (keydown.enter)="sendMessage()" class="write_msg" placeholder="Type a message" />
                     <button class="msg_send_btn" type="button" (click)="sendMessage()"><i class="fa fa-paper-plane-o"
                             aria-hidden="true"></i></button>
                 </div>
