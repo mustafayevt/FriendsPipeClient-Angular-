@@ -5,6 +5,7 @@ import { of, Observable } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { RefreshAccessToken } from '../DTOs/RefreshAccessToken';
+import { error } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -49,9 +50,14 @@ export class AuthService {
 
   refreshToken() {
     return this.http.post<any>(`${this.baseUrl}auth/refreshtoken`, {
-      'refreshToken': this.getRefreshToken()
+      'refreshToken': this.getRefreshToken(),
+      'accessToken': this.getJwtToken()
     }).pipe(tap((tokens: RefreshAccessToken) => {
-      this.storeJwtToken(tokens.accessToken);
+      this.storeTokens(tokens);
+      window.location.reload();
+    }, (e) => {
+      this.doLogoutUser();
+      window.location.reload();
     }));
   }
 
